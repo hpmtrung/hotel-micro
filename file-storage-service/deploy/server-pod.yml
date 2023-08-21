@@ -1,0 +1,67 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: file-storage-service
+spec:
+  ports:
+    - port: 8055
+      targetPort: 8055
+  selector:
+    svc: file-storage-service
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: file-storage-service
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      svc: file-storage-service
+  revisionHistoryLimit: 1
+  progressDeadlineSeconds: 500
+  minReadySeconds: 100
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 1
+      maxSurge: 1
+  template:
+    metadata:
+      labels:
+        svc: file-storage-service
+    spec:
+      containers:
+        - name: fileserver
+          env:
+            - name: SPRING_PROFILES_ACTIVE
+              value: prod
+            - name: DATASOURCE_URL
+              value: jdbc:postgresql://192.168.1.8:5432/filemetadb
+            - name: DATASOURCE_USERNAME
+              value: dell
+            - name: DATASOURCE_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: fs-secret
+                  key: dbPass
+            - name: REDIS_SERVER
+              value: redis_caches
+            - name: FTP_HOST
+              valueFrom:
+                secretKeyRef:
+                  name: fs-secret
+                  key: ftpHost
+            - name: FTP_PORT
+              value: "21"
+            - name: FTP_USERNAME
+              value: remotedell
+            - name: FTP_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: fs-secret
+                  key: ftpPass
+          image: hba/file-storage-service:1.0
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 8055

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>2.7.11</version>
+        <relativePath/> <!-- lookup parent from repository -->
+    </parent>
+    <groupId>com.hba</groupId>
+    <artifactId>hotel-booking-application</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+    <packaging>pom</packaging>
+
+    <modules>
+        <module>hba-core</module>
+        <module>hba-api-gateway</module>
+        <module>hba-partner-service</module>
+        <module>hba-reservation-service</module>
+        <module>hba-rental-service</module>
+        <module>hba-room-service</module>
+        <module>file-storage-sdk</module>
+        <module>hba-common-saga</module>
+        <module>hba-reservation-service-api</module>
+        <module>hba-common-messaging</module>
+        <module>hba-room-service-api</module>
+        <module>hba-partner-service-api</module>
+        <module>hba-rental-service-api</module>
+    </modules>
+
+</project>

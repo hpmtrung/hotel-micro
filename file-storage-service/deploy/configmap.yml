@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: Secret
+metadata:
+  name: fs-secret
+type: Opaque
+stringData:
+  dbPass: delladmin
+  ftpHost: 192.168.1.8
+  ftpPass: remotedell

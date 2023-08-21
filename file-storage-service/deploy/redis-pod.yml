@@ -1,0 +1,28 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: redis-caches
+spec:
+  ports:
+    - port: 6379
+      targetPort: 6379
+  selector:
+    svc: redis
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: redis-caches
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      svc: redis
+  template:
+    metadata:
+      labels:
+        svc: redis
+    spec:
+      containers:
+        - name: redis
+          image: redis:latest

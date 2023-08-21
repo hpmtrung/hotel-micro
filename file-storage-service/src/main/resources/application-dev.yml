@@ -1,0 +1,15 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://192.168.1.8:5432/filemetadb
+    username: dell
+    password: delladmin
+
+application:
+  redis:
+    host: 192.168.1.8
+  ftp:
+    host: 192.168.1.8
+    port: 21
+    username: remotedell
+    password: remotedell
+    aes-key: yZE6Z4C0z0z+hw==

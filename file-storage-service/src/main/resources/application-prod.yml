@@ -1,0 +1,15 @@
+spring:
+  datasource:
+    url: ${DATASOURCE_URL}
+    username: ${DATASOURCE_USERNAME}
+    password: ${DATASOURCE_PASSWORD}
+
+application:
+  redis:
+    host: ${REDIS_SERVER}
+  ftp:
+    host: ${FTP_HOST}
+    port: ${FTP_PORT}
+    username: ${FTP_USERNAME}
+    password: ${FTP_PASSWORD}
+    aes-key: yZE6Z4C0z0z+hw==

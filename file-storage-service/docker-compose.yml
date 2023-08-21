@@ -1,0 +1,22 @@
+version: "3.8"
+services:
+  fileserver:
+    build: .
+    environment:
+      - "SPRING_PROFILES_ACTIVE=prod"
+    ports:
+      - target: 8055
+        published: 8055
+    depends_on:
+      - redis
+    networks:
+      - localnet
+  redis:
+    image: "redis:alpine"
+    networks:
+      - localnet
+
+networks:
+  localnet:
+    external: true
+    name: fileserver-network
